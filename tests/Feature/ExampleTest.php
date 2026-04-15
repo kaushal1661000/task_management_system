@@ -1,0 +1,9 @@
+<?php
+
+use function Pest\Laravel\get;
+
+test('returns a successful response', function () {
+    $response = get(route('home'));
+
+    $response->assertRedirect(route('login', absolute: false));
+});
