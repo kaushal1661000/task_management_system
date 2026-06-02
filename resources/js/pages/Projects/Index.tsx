@@ -229,7 +229,7 @@ export default function ProjectsIndex({ projects, auth, filters, clients, employ
                         <div className="text-center py-12 bg-white rounded-xl border border-gray-200">
                             <FolderKanban className="mx-auto h-12 w-12 text-gray-400" />
                             <h3 className="mt-2 text-sm font-medium text-gray-900">
-                                No projects
+                                No projects here
                             </h3>
                             <p className="mt-1 text-sm text-gray-500">
                                 {isAdmin
