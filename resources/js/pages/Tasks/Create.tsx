@@ -131,7 +131,7 @@ export default function Create({ projects, admins, projectMembersByProject, auth
 
                                 {/* Project */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="project_id" required>Project</Label>
+                                    <Label htmlFor="project_id" required>Project Name</Label>
                                     <select
                                         id="project_id"
                                         value={data.project_id}
