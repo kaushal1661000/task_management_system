@@ -86,7 +86,7 @@ export default function Edit({ task, projects, employees, auth }: EditProps) {
 
                                 {/* Description */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="description">Description</Label>
+                                    <Label htmlFor="description" required>Description</Label>
                                     <Description
                                         id="description"
                                         value={data.description}
