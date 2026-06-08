@@ -183,7 +183,7 @@ export default function Create() {
                         {data.role === 'client' && (
                             <div className="border-t border-gray-200 pt-6">
                                 <h3 className="text-md font-medium text-gray-900 mb-4">
-                                    Client Information
+                                    Client Info
                                 </h3>
                                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                     {/* Company Name */}
