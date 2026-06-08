@@ -223,7 +223,7 @@ export default function Create() {
 
                                     {/* Address */}
                                     <div className="sm:col-span-2">
-                                        <Label htmlFor="address">Address</Label>
+                                        <Label htmlFor="address">Addresss</Label>
                                         <Description
                                             id="address"
                                             value={data.address}
