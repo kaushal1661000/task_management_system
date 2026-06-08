@@ -192,7 +192,7 @@ export default function Index({
 
                     </div>
                     <div>
-                        <Label htmlFor="project_id">Project</Label>
+                        <Label htmlFor="project_id">Project Name</Label>
                         <ReactSelectField<string>
                             id="project_id"
                             value={projectId}
