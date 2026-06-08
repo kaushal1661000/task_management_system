@@ -76,7 +76,7 @@ export default function Edit({ project, clients, employees }: EditProps) {
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 {/* Project Name */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="name" required>Project Name</Label>
+                                    <Label htmlFor="name" required>Project</Label>
                                     <Input
                                         id="name"
                                         type="text"
