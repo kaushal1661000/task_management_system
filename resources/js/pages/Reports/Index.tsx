@@ -182,7 +182,7 @@ export default function Index({
 
                     {/* End Date */}
                     <div>
-                        <Label htmlFor="end_date">End Date</Label>
+                        <Label htmlFor="end_date">End Datee</Label>
                         <DatePicker
                             id="end_date"
                             value={endDate}
