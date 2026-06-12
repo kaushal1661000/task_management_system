@@ -77,34 +77,25 @@ export default function Create() {
                                 </div>
 
                                 {/* Email */}
-                                <div className="sm:col-span-2">
-                                    <Label htmlFor="email" required>Email Address</Label>
-                                    <Input
-                                        id="email"
-                                        // type="email"
-                                        value={data.email}
-                                        onChange={(e) => setData('email', e.target.value)}
-                                        placeholder="john@company.com"
-                                        className="mt-1"
-                                       
-                                    />
-                                    <InputError message={errors.email} className="mt-2" />
-                                </div>
+                                <Input
+                                    id="email"
+                                    type="email"
+                                    autoComplete="email"
+                                    value={data.email}
+                                    onChange={(e) => setData('email', e.target.value.trim().toLowerCase())}
+                                    placeholder="john@company.com"
+                                    className="mt-1"
+                                />
 
-                                {/* Password */}
-                                <div>
-                                    <Label htmlFor="password" required>Password</Label>
-                                    <Input
-                                        id="password"
-                                        type="password"
-                                        value={data.password}
-                                        onChange={(e) => setData('password', e.target.value)}
-                                        placeholder="Min. 8 characters"
-                                        className="mt-1"
-                                        
-                                    />
-                                    <InputError message={errors.password} className="mt-2" />
-                                </div>
+                                <Input
+                                    id="password"
+                                    type="password"
+                                    autoComplete="new-password"
+                                    value={data.password}
+                                    onChange={(e) => setData('password', e.target.value)}
+                                    placeholder="Min. 8 characters"
+                                    className="mt-1"
+                                />
 
                                 {/* Confirm Password */}
                                 <div>
