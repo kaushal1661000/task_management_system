@@ -71,27 +71,36 @@ export default function Edit({ task, projects, employees, auth }: EditProps) {
                             </h3>
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 {/* Title */}
+                               {/* Task Title */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="title" required>Task Title</Label>
+                                    <Label htmlFor="title" required>
+                                        Task Title
+                                    </Label>
                                     <Input
                                         id="title"
                                         type="text"
+                                        autoComplete="off"
                                         value={data.title}
-                                        onChange={(e) => setData('title', e.target.value)}
+                                        onChange={(e) => setData('title', e.target.value.trimStart())}
+                                        placeholder="Fix login issue"
                                         className="mt-1"
-                                        
+                                        maxLength={200}
                                     />
                                     <InputError message={errors.title} className="mt-2" />
                                 </div>
-
+                                
                                 {/* Description */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="description" required>Description</Label>
+                                    <Label htmlFor="description" required>
+                                        Description
+                                    </Label>
                                     <Description
                                         id="description"
                                         value={data.description}
                                         onChange={(e) => setData('description', e.target.value)}
                                         rows={4}
+                                        placeholder="Describe the task details, expected output, and important notes..."
+                                        maxLength={2000}
                                     />
                                     <InputError message={errors.description} className="mt-2" />
                                 </div>
