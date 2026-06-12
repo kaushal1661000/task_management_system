@@ -65,31 +65,50 @@ export default function Edit({ client }: EditProps) {
                             </h3>
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 {/* Contact Name */}
+                                {/* Contact Name */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="name" required>Contact Name</Label>
+                                    <Label htmlFor="name" required>
+                                        Contact Name
+                                    </Label>
                                     <Input
                                         id="name"
                                         type="text"
+                                        autoComplete="name"
                                         value={data.name}
-                                        onChange={(e) => setData('name', e.target.value)}
+                                        onChange={(e) =>
+                                            setData('name', e.target.value.trimStart())
+                                        }
+                                        placeholder="John Doe"
                                         className="mt-1"
-                                        
+                                        maxLength={100}
                                     />
-                                    <InputError message={errors.name} className="mt-2" />
+                                    <InputError
+                                        message={errors.name}
+                                        className="mt-2"
+                                    />
                                 </div>
-
+                                
                                 {/* Email */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="email"required>Email Address</Label>
+                                    <Label htmlFor="email" required>
+                                        Email Address
+                                    </Label>
                                     <Input
                                         id="email"
                                         type="email"
+                                        autoComplete="email"
                                         value={data.email}
-                                        onChange={(e) => setData('email', e.target.value)}
+                                        onChange={(e) =>
+                                            setData('email', e.target.value.trim().toLowerCase())
+                                        }
+                                        placeholder="john@company.com"
                                         className="mt-1"
-                                        
+                                        maxLength={255}
                                     />
-                                    <InputError message={errors.email} className="mt-2" />
+                                    <InputError
+                                        message={errors.email}
+                                        className="mt-2"
+                                    />
                                 </div>
                             </div>
                         </div>
