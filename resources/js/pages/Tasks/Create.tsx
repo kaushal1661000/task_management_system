@@ -88,9 +88,9 @@ export default function Create({ projects, admins, projectMembersByProject, auth
             <div className="mx-auto max-w-3xl">
                 <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
                     <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
-                        <h2 className="text-lg font-semibold text-gray-900">Create New Task</h2>
+                        <h2 className="text-lg font-semibold text-gray-900">Create Task</h2>
                         <p className="mt-1 text-sm text-gray-500">
-                            Add a new task and assign it to team members
+                            Add a new task and assign it to team member
                         </p>
                     </div>
 
