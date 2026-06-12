@@ -128,52 +128,69 @@ export default function Create() {
                             </h3>
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 {/* Company Name */}
+                               {/* Company Name */}
                                 <div className="sm:col-span-2">
                                     <Label htmlFor="company_name" required>
                                         Company Name
                                     </Label>
                                     <Input
                                         id="company_name"
-                                        // type="text"
+                                        type="text"
+                                        autoComplete="organization"
                                         value={data.company_name}
                                         onChange={(e) =>
-                                            setData('company_name', e.target.value)
+                                            setData('company_name', e.target.value.trimStart())
                                         }
                                         placeholder="Acme Corporation"
                                         className="mt-1"
-                                        // required
                                     />
                                     <InputError
                                         message={errors.company_name}
                                         className="mt-2"
                                     />
                                 </div>
-
+                                
                                 {/* Phone */}
                                 <div>
-                                    <Label htmlFor="phone" required>Phone Number</Label>
+                                    <Label htmlFor="phone" required>
+                                        Phone Number
+                                    </Label>
                                     <Input
                                         id="phone"
-                                        // type="tel"
+                                        type="tel"
+                                        autoComplete="tel"
                                         value={data.phone}
-                                        onChange={(e) => setData('phone', e.target.value)}
+                                        onChange={(e) =>
+                                            setData('phone', e.target.value.replace(/[^\d+\-\s()]/g, ''))
+                                        }
                                         placeholder="+1 (555) 123-4567"
                                         className="mt-1"
                                     />
-                                    <InputError message={errors.phone} className="mt-2" />
+                                    <InputError
+                                        message={errors.phone}
+                                        className="mt-2"
+                                    />
                                 </div>
-
+                                
                                 {/* Address */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="address">Address</Label>
+                                    <Label htmlFor="address">
+                                        Address
+                                    </Label>
                                     <Description
                                         id="address"
                                         value={data.address}
-                                        onChange={(e) => setData('address', e.target.value)}
+                                        onChange={(e) =>
+                                            setData('address', e.target.value)
+                                        }
                                         rows={3}
-                                        placeholder="123 Main St, City, State, ZIP"
+                                        placeholder="123 Main Street, City, State, ZIP Code"
+                                        autoComplete="street-address"
                                     />
-                                    <InputError message={errors.address} className="mt-2" />
+                                    <InputError
+                                        message={errors.address}
+                                        className="mt-2"
+                                    />
                                 </div>
                             </div>
                         </div>
