@@ -69,20 +69,24 @@ export default function Create({ clients, employees }: CreateProps) {
                             </h3>
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 {/* Project Name */}
+                                {/* Project Name */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="name" required>Project Name </Label>
+                                    <Label htmlFor="name" required>
+                                        Project Name
+                                    </Label>
                                     <Input
                                         id="name"
                                         type="text"
+                                        autoComplete="off"
                                         value={data.name}
-                                        onChange={(e) => setData('name', e.target.value)}
+                                        onChange={(e) => setData('name', e.target.value.trimStart())}
                                         placeholder="Website Redesign"
                                         className="mt-1"
-                                    
+                                        maxLength={150}
                                     />
                                     <InputError message={errors.name} className="mt-2" />
                                 </div>
-
+                                
                                 {/* Description */}
                                 <div className="sm:col-span-2">
                                     <Label htmlFor="description">Description</Label>
@@ -91,20 +95,22 @@ export default function Create({ clients, employees }: CreateProps) {
                                         value={data.description}
                                         onChange={(e) => setData('description', e.target.value)}
                                         rows={4}
-                                        placeholder="Project description and objectives..."
+                                        placeholder="Project description, scope, and objectives..."
+                                        maxLength={1000}
                                     />
                                     <InputError message={errors.description} className="mt-2" />
                                 </div>
-
+                                
                                 {/* Client */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="client_id required" required>Client </Label>
+                                    <Label htmlFor="client_id" required>
+                                        Client
+                                    </Label>
                                     <select
                                         id="client_id"
                                         value={data.client_id}
                                         onChange={(e) => setData('client_id', e.target.value)}
-                                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-lg focus:border-blue-500 focus:ring-blue-500"
-                                        
+                                        className="mt-1 block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     >
                                         <option value="">Select a client</option>
                                         {clients?.map((client) => (
