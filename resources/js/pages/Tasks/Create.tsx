@@ -102,53 +102,80 @@ export default function Create({ projects, admins, projectMembersByProject, auth
                             </h3>
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
                                 {/* Title */}
+                               {/* Task Title */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="title" required>Task Title</Label>
+                                    <Label htmlFor="title" required>
+                                        Task Title
+                                    </Label>
                                     <Input
                                         id="title"
                                         type="text"
+                                        autoComplete="off"
                                         value={data.title}
-                                        onChange={(e) => setData('title' as keyof FormData, e.target.value)}
+                                        onChange={(e) =>
+                                            setData('title' as keyof FormData, e.target.value.trimStart())
+                                        }
                                         placeholder="Fix login bug"
                                         className="mt-1"
-                                        
+                                        maxLength={200}
                                     />
-                                    <InputError message={errors.title} className="mt-2" />
+                                    <InputError
+                                        message={errors.title}
+                                        className="mt-2"
+                                    />
                                 </div>
-
+                                
                                 {/* Description */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="description">Description</Label>
+                                    <Label htmlFor="description">
+                                        Description
+                                    </Label>
                                     <Description
                                         id="description"
                                         value={data.description}
-                                        onChange={(e) => setData('description' as keyof FormData, e.target.value)}
+                                        onChange={(e) =>
+                                            setData('description' as keyof FormData, e.target.value)
+                                        }
                                         rows={4}
-                                        placeholder="Detailed description of the task..."
+                                        maxLength={2000}
+                                        placeholder="Describe the task requirements, expected outcome, and any important notes..."
                                     />
-                                    <InputError message={errors.description} className="mt-2" />
+                                    <InputError
+                                        message={errors.description}
+                                        className="mt-2"
+                                    />
                                 </div>
-
+                                
                                 {/* Project */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="project_id" required>Project Name</Label>
+                                    <Label htmlFor="project_id" required>
+                                        Project Name
+                                    </Label>
                                     <select
                                         id="project_id"
                                         value={data.project_id}
-                                        onChange={(e) => setData('project_id' as keyof FormData, e.target.value)}
-                                        className="mt-1 block w-full rounded-lg border-gray-300 shadow-lg focus:border-blue-500 focus:ring-blue-500"
-                                        
+                                        onChange={(e) =>
+                                            setData('project_id' as keyof FormData, e.target.value)
+                                        }
+                                        className="mt-1 block w-full rounded-lg border border-gray-300 bg-white px-3 py-2 shadow-sm focus:border-blue-500 focus:outline-none focus:ring-1 focus:ring-blue-500"
                                     >
                                         <option value="">Select a project</option>
+                                
                                         {projects?.map((project) => (
-                                            <option key={project.id} value={project.id}>
+                                            <option
+                                                key={project.id}
+                                                value={project.id}
+                                            >
                                                 {project.name}
                                             </option>
                                         ))}
                                     </select>
-                                    <InputError message={errors.project_id} className="mt-2" />
+                                
+                                    <InputError
+                                        message={errors.project_id}
+                                        className="mt-2"
+                                    />
                                 </div>
-
                                 {/* Assigned To */}
                                 <div>
                                     <Label htmlFor="assigned_to" required>Assign To</Label>
