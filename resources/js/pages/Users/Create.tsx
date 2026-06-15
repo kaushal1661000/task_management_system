@@ -71,7 +71,7 @@ export default function Create() {
                             Create New User
                         </h2>
                         <p className="mt-1 text-sm text-gray-500">
-                            Add a new employee or client
+                            Add a new employee or clients
                         </p>
                     </div>
 
