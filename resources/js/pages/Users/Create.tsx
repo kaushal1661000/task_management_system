@@ -1,6 +1,6 @@
 import { Head, Link, useForm } from '@inertiajs/react';
 import { ArrowLeft } from 'lucide-react';
-import type { FormEventHandler} from 'react';
+import type { FormEventHandler } from 'react';
 import InputError from '@/components/input-error';
 import ReactSelectField, { type ReactSelectOption } from '@/components/react-select-field';
 import { Button } from '@/components/ui/button';
@@ -35,6 +35,7 @@ export default function Create() {
 
     const handleSubmit: FormEventHandler = (event) => {
         event.preventDefault();
+
         post(usersStore().url, {
             onSuccess: () => reset('password', 'password_confirmation'),
         });
@@ -53,7 +54,6 @@ export default function Create() {
         <AppLayout header="Create User">
             <Head title="Create User" />
 
-            {/* Back Button */}
             <div className="mb-6">
                 <Link
                     href={usersIndex()}
@@ -64,19 +64,18 @@ export default function Create() {
                 </Link>
             </div>
 
-            {/* Form Card */}
             <div className="mx-auto max-w-3xl">
-                <div className="bg-white rounded-xl shadow-sm border border-gray-200 overflow-hidden">
+                <div className="overflow-hidden rounded-xl border border-gray-200 bg-white shadow-sm">
                     <div className="border-b border-gray-200 bg-gray-50 px-6 py-4">
                         <h2 className="text-lg font-semibold text-gray-900">
                             Create New User
                         </h2>
                         <p className="mt-1 text-sm text-gray-500">
-                            Add a new employee or client 
+                            Add a new employee or client
                         </p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="p-6 space-y-6">
+                    <form onSubmit={handleSubmit} className="space-y-6 p-6">
                         {Object.keys(errors).length > 0 && (
                             <div className="rounded-lg border border-red-200 bg-red-50 p-4">
                                 <p className="text-sm font-medium text-red-700">
@@ -90,45 +89,57 @@ export default function Create() {
                             </div>
                         )}
 
-                        {/* Basic Information */}
                         <div>
-                            <h3 className="text-md font-medium text-gray-900 mb-4">
+                            <h3 className="mb-4 text-md font-medium text-gray-900">
                                 Basic Information
                             </h3>
+
                             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                                {/* Name */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="name" required>Full Name</Label>
+                                    <Label htmlFor="name" required>
+                                        Full Name
+                                    </Label>
                                     <Input
                                         id="name"
-                                        // type="text"
+                                        type="text"
+                                        autoComplete="name"
                                         value={data.name}
-                                        onChange={(e) => setData('name', e.target.value)}
+                                        onChange={(e) =>
+                                            setData('name', e.target.value.trimStart())
+                                        }
                                         placeholder="John Doe"
                                         className="mt-1"
-                                        // required
+                                        maxLength={100}
                                     />
                                     <InputError message={errors.name} className="mt-2" />
                                 </div>
 
-                                {/* Email */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="email" required>Email Address</Label>
+                                    <Label htmlFor="email" required>
+                                        Email Address
+                                    </Label>
                                     <Input
                                         id="email"
-                                        // type="email"
+                                        type="email"
+                                        autoComplete="email"
                                         value={data.email}
-                                        onChange={(e) => setData('email', e.target.value)}
+                                        onChange={(e) =>
+                                            setData(
+                                                'email',
+                                                e.target.value.trim().toLowerCase(),
+                                            )
+                                        }
                                         placeholder="john@company.com"
                                         className="mt-1"
-                                        // required
+                                        maxLength={255}
                                     />
                                     <InputError message={errors.email} className="mt-2" />
                                 </div>
 
-                                {/* Role */}
                                 <div className="sm:col-span-2">
-                                    <Label htmlFor="role" required>Role</Label>
+                                    <Label htmlFor="role" required>
+                                        Role
+                                    </Label>
                                     <ReactSelectField<FormData['role']>
                                         id="role"
                                         value={data.role}
@@ -140,22 +151,28 @@ export default function Create() {
                                     <InputError message={errors.role} className="mt-2" />
                                 </div>
 
-                                {/* Password */}
                                 <div>
-                                    <Label htmlFor="password" required>Password</Label>
+                                    <Label htmlFor="password" required>
+                                        Password
+                                    </Label>
                                     <Input
                                         id="password"
                                         type="password"
+                                        autoComplete="new-password"
                                         value={data.password}
-                                        onChange={(e) => setData('password', e.target.value)}
+                                        onChange={(e) =>
+                                            setData('password', e.target.value)
+                                        }
                                         placeholder="Min. 8 characters"
                                         className="mt-1"
-                                        // required
+                                        minLength={8}
                                     />
-                                    <InputError message={errors.password} className="mt-2" />
+                                    <InputError
+                                        message={errors.password}
+                                        className="mt-2"
+                                    />
                                 </div>
 
-                                {/* Confirm Password */}
                                 <div>
                                     <Label htmlFor="password_confirmation" required>
                                         Confirm Password
@@ -163,13 +180,17 @@ export default function Create() {
                                     <Input
                                         id="password_confirmation"
                                         type="password"
+                                        autoComplete="new-password"
                                         value={data.password_confirmation}
                                         onChange={(e) =>
-                                            setData('password_confirmation', e.target.value)
+                                            setData(
+                                                'password_confirmation',
+                                                e.target.value,
+                                            )
                                         }
                                         placeholder="Confirm password"
                                         className="mt-1"
-                                        // required
+                                        minLength={8}
                                     />
                                     <InputError
                                         message={errors.password_confirmation}
@@ -179,26 +200,32 @@ export default function Create() {
                             </div>
                         </div>
 
-                        {/* Client Information (only show if role is client) */}
                         {data.role === 'client' && (
                             <div className="border-t border-gray-200 pt-6">
-                                <h3 className="text-md font-medium text-gray-900 mb-4">
+                                <h3 className="mb-4 text-md font-medium text-gray-900">
                                     Client Info
                                 </h3>
+
                                 <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
-                                    {/* Company Name */}
                                     <div className="sm:col-span-2">
-                                        <Label htmlFor="company_name" required>Company Name</Label>
+                                        <Label htmlFor="company_name" required>
+                                            Company Name
+                                        </Label>
                                         <Input
                                             id="company_name"
-                                            // type="text"
+                                            type="text"
+                                            autoComplete="organization"
                                             value={data.company_name}
                                             onChange={(e) =>
-                                                setData('company_name', e.target.value)
+                                                setData(
+                                                    'company_name',
+                                                    e.target.value.trimStart(),
+                                                )
                                             }
                                             placeholder="Acme Corporation"
                                             className="mt-1"
                                             required={data.role === 'client'}
+                                            maxLength={150}
                                         />
                                         <InputError
                                             message={errors.company_name}
@@ -206,38 +233,54 @@ export default function Create() {
                                         />
                                     </div>
 
-                                    {/* Phone */}
                                     <div>
-                                        <Label htmlFor="phone" required>Phone Number</Label>
+                                        <Label htmlFor="phone" required>
+                                            Phone Number
+                                        </Label>
                                         <Input
                                             id="phone"
-                                            // type="tel"
+                                            type="tel"
+                                            autoComplete="tel"
                                             value={data.phone}
-                                            onChange={(e) => setData('phone', e.target.value)}
+                                            onChange={(e) =>
+                                                setData(
+                                                    'phone',
+                                                    e.target.value.replace(
+                                                        /[^\d+\-\s()]/g,
+                                                        '',
+                                                    ),
+                                                )
+                                            }
                                             placeholder="+1 (555) 123-4567"
                                             className="mt-1"
                                             required={data.role === 'client'}
                                         />
-                                        <InputError message={errors.phone} className="mt-2" />
+                                        <InputError
+                                            message={errors.phone}
+                                            className="mt-2"
+                                        />
                                     </div>
 
-                                    {/* Address */}
                                     <div className="sm:col-span-2">
-                                        <Label htmlFor="address">Addresss</Label>
+                                        <Label htmlFor="address">Address</Label>
                                         <Description
                                             id="address"
                                             value={data.address}
-                                            onChange={(e) => setData('address', e.target.value)}
+                                            onChange={(e) =>
+                                                setData('address', e.target.value)
+                                            }
                                             rows={3}
                                             placeholder="123 Main St, City, State, ZIP"
                                         />
-                                        <InputError message={errors.address} className="mt-2" />
+                                        <InputError
+                                            message={errors.address}
+                                            className="mt-2"
+                                        />
                                     </div>
                                 </div>
                             </div>
                         )}
 
-                        {/* Form Actions */}
                         <div className="flex items-center justify-end gap-3 border-t border-gray-200 pt-6">
                             <Link href={usersIndex()}>
                                 <Button type="button" variant="outline">
