@@ -45,7 +45,7 @@ export default function Create({ clients, employees }: CreateProps) {
                     className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900"
                 >
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to Projects
+                    Back to Projectss
                 </Link>
             </div>
 
@@ -57,7 +57,7 @@ export default function Create({ clients, employees }: CreateProps) {
                             Create New Project
                         </h2>
                         <p className="mt-1 text-sm text-gray-500">
-                            Set up a new project with client and team members
+                            Set up a new project with client and team memberss
                         </p>
                     </div>
 
