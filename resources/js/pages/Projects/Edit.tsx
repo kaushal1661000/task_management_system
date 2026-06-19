@@ -53,7 +53,7 @@ export default function Edit({ project, clients, employees }: EditProps) {
                     className="inline-flex items-center text-sm text-gray-600 hover:text-gray-900"
                 >
                     <ArrowLeft className="mr-2 h-4 w-4" />
-                    Back to Projects
+                    Back to Projectss
                 </Link>
             </div>
 
